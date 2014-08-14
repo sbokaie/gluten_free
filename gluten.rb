@@ -1,31 +1,49 @@
 class Person
 
-	def initialize(allergies)
-		@allergies = allergies
-		@stomach = []
-	end
+  def initialize(allergies)
+    @allergies = allergies
+    @stomach = []
+  end
 
-	def eat(food)
-		is_allergic = false
-		food.each do |ingredient|
-			if @allergies.include?(ingredient)
-				puts ("Stop or you gonna DIE!!!")
-				is_allergic = true
-			end
-			if !is_allergic
-				@stomach.push(food)
-			end
-		end
-	end
+  def eat(food)
+    check_food(@allergies, food)
+    puts "Do you want to eat the food?"
+input = gets.chomp.downcase
+if input == "yes"
+puke(food)
+else puts "You can live"
+  end
+  end
+
+def puke(food)
+@stomach = []
+puts "BLEUUEHUEHUEHEHUH (you puked)"
 end
 
+end
+
+def check_food(allergies, food)
+is_allergic = false
+    food.each do |ingredient|
+      if @allergies.include?(ingredient)
+        is_allergic = true
+        puts "Allergy Warning"
+      end
+    end
+      if !is_allergic
+        @stomach.push(food)
+      end
+  end
+
+
+
 pizza = ["cheese", "gluten", "tomatoes"]
-pan_seared_scallops = ["scallops", "lemons", "pasta", "olive oil"]
-water = ["h", "h", "o"]
+# pan_seared_scallops = ["scallops", "lemons", "pasta", "olive oil"]
+# water = ["h", "h", "o"]
 
-john = Person.new("gluten")
-john.eat(pizza)
 
+bob = Person.new("gluten")
+bob.eat(pizza)
 
 
 
